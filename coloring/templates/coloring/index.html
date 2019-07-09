@@ -58,14 +58,20 @@
 			// your rectangle gradient interaction goes in this function
 			// you may also add code outside of the function (e.g., global variables)
 			function myGradientInteraction(){
-				var tool = new paper.Tool();
-
+      var tool = new paper.Tool();
+      var rectangle = new paper.Rectangle(new paper.Point(300, 300), new paper.Point(700, 550));
+      var path = new paper.Path.Rectangle(rectangle);
+      path.fillColor = 'red';
+      
+        var originPoint;
 				tool.onMouseDown = function (event) {
-
+          originPoint = event.point;
 				}
 
 				tool.onMouseUp = function (event) {
-					
+          var gradient = new paper.Gradient([cp.history[cp.history.length - 2], cp.history[cp.history.length - 1]]);
+          var gradientColor = new paper.Color(gradient, originPoint, event.point);
+          path.fillColor = gradientColor;
 				}
 			}
 
