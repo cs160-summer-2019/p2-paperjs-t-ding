@@ -11,17 +11,16 @@
 
 	<style type="text/css">
 		#color-palette {
-			width: 300px;
+			width: 725px;
 			background-color: #f1f1f1;
 			display: flex;
 			flex-wrap: wrap;
 			position: absolute;
-			top: 0;
 		}
 
 		.swatch {
-			width: 24px;
-			height: 24px;
+			width: 45px;
+			height: 45px;
 			-moz-border-radius: 12px;
 			-webkit-border-radius: 12px;
 			border-radius: 12px;
@@ -31,10 +30,103 @@
 		#myCanvas {
 			padding-left: 0;
 		    padding-right: 0;
-		    margin-left: auto;
+		    margin-left: 0;
 		    margin-right: auto;
 		    display: block;
 		}
+    #camSel {
+      position: absolute;
+      top: 870px;
+      left: 280px;
+      margin-top: 200;
+      z-index: 5;
+      width: 140px;
+      height: 145px;
+      opacity: 0;
+    }
+    #menuSelect {
+      background-color: #f1f1f1;
+      position: absolute;
+      top: 860px;
+      left: 0px;
+      max-width: 48%;
+      height: auto;
+    }
+    #camBack {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      z-index: 10;
+      border: 1px solid black;
+    }
+    #camMenu {
+      position: absolute;
+      top: 1000px;
+      left: 280px;
+      width: 140px;
+    }
+      #colSel {
+      position: absolute;
+      top: 870px;
+      left: 140px;
+      margin-top: 200;
+      z-index: 5;
+      width: 140px;
+      height: 145px;
+      opacity: 0;
+    }
+     #colMenu {
+      position: absolute;
+      top: 1000px;
+      left: 140px;
+      width: 132px;
+    }
+    #camBa {
+      position: absolute;
+      top: 733px;
+      left: 503px;
+      height: 50px;
+      width: 173px;
+      z-index: 20;
+      opacity: 0;
+    }
+    #colBack {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      z-index: 10;
+      border: 1px solid black;
+    }
+    #colImage {
+      position: absolute;
+      top: 105px;
+      left:91px;
+      z-index:15;
+    }
+    #colBa {
+      position: absolute;
+      top: 733px;
+      left: 503px;
+      height: 50px;
+      width: 173px;
+      z-index: 20;
+      opacity: 0;
+    }
+    #camImage {
+      position: absolute;
+      top: 58px;
+      left: 61px;
+      z-index:15;
+    }
+    #camTake {
+      position: absolute;
+      top: 730px;
+      left: 317px;
+      z-index: 25;
+      height: 120px;
+      width: 130px;
+      opacity: 0;
+    }
 	</style>
 
 	<script type="text/javascript" canvas="canvas">
@@ -79,7 +171,48 @@
 			// you may replace everything
 			function myCustomInteraction() {
 				var tool = new paper.Tool();
-
+        
+        
+      //toggles color wheel screen
+      const $camScreen = $('#camBack, #camMenu');
+      $camScreen.hide();
+      $('#camBa').hide();
+      $('#camImage').hide();
+      $('#camTake').hide();
+      $('#camSel').on('click', () => {
+      $camScreen.show();
+      $('#camBa').show();
+      $('#camTake').show();
+      })
+      $('#camBa').on('click', () => {
+        $camScreen.hide();
+        $('#camBa').hide();
+        $('#camImage').hide();
+        $('#camTake').hide();
+      })
+      const $colScreen = $('#colBack, #colMenu');
+      $colScreen.hide();
+      $('#colBa').hide();
+      $('#colImage').hide();
+      $('#colSel').on('click', () => {
+      $colScreen.show();
+      $('#colImage').show();
+      $('#colBa').show();
+      })
+      $('#colBa').on('click', () => {
+        $colScreen.hide();
+        $('#colBa').hide();
+        $('#colImage').hide();
+      })
+      $('#camTake').on('click', () => {
+        $('#camImage').show();
+      })
+        
+        
+        
+        
+        
+        
 				tool.onMouseDown = function (event) {
 				    var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
 				    if (hit) {
@@ -150,5 +283,23 @@
 
 	<canvas id="myCanvas" width="750px" height="750px"></canvas>
 	<div id="color-palette"></div>
+  <div>
+    <button id="camSel">camera</button>
+    <button id="colSel">wheel</button>
+    <button id="takePic">takePic</button>
+    <button id="camBa">Back</button>
+    <button id="colBa">Back</button>
+    <button id="camTake">Take</button>
+    <img id="menuSelect" src="https://i.imgur.com/WZo70ZZ.png">
+    <img id="camBack" src="https://i.imgur.com/qUojiUu.jpg">
+    <img id="colBack" src="https://i.imgur.com/Grrt8ZF.jpg">
+    <img id="camMenu" src="https://i.imgur.com/E43MOHR.png">
+    <img id="colMenu" src="https://i.imgur.com/E43MOHR.png">
+    <img id="colImage" src="https://i.imgur.com/ZXfcrVy.png">
+    <img id="camImage" src="https://i.imgur.com/trQxeXv.jpg">
+  </div>
+  <script type="text/javascript">
+
+  </script>
 </body>
 </html>
